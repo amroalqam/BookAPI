@@ -1,7 +1,12 @@
+using BookAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using BookAPI.Rebositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddScoped<IBookRebository, BookRebository>();
+builder.Services.AddDbContext<BookContext>(o => o.UseSqlite("Data source=books.db"));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
