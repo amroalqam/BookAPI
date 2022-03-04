@@ -44,7 +44,7 @@ namespace BookAPI.Controllers
         public async Task<ActionResult> DeleteBook(int id)
         {
             var bookToDelete = await _bookRebository.Get(id);
-            if (bookToDelete != null)
+            if (bookToDelete == null)
                 return NotFound();
             await _bookRebository.Delete(bookToDelete.Id);
             return NoContent();
